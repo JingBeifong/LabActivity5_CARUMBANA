@@ -31,7 +31,7 @@ public class FoodOrderGUI extends JFrame{
         falco.add(rb5);
 
         btnOrder.addActionListener(e -> {
-
+            try {
                 double tamount = 0;
                 if(cBurger.isSelected())
                     tamount += burger;
@@ -53,7 +53,14 @@ public class FoodOrderGUI extends JFrame{
                 else if(rb15.isSelected())
                     tamount -= tamount * 0.15;
 
+                if(tamount == 0){
+                    throw new IllegalArgumentException("Invalid Order: total must be more than 0, try ordering something.");
+                }
+                JOptionPane.showMessageDialog(mainpnl, "Total Price: Php " + String.format("%.2f", tamount));
 
+            } catch (IllegalArgumentException arasaka){
+                JOptionPane.showMessageDialog(FoodOrderGUI.this, "Invalid: Please choose something.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
     }
     public static void main(String[] args){
