@@ -9,6 +9,34 @@ public class SimpleCalcGUI extends JFrame {
     private JButton btnCompute;
     private JTextField tfNumber2;
     private JTextField lblResult;
+    public SimpleCalcGUI() {
+        btnCompute.addActionListener((event) -> {
+                double num1 = Double.parseDouble(tfNumber1.getText());
+                double num2 = Double.parseDouble(tfNumber2.getText());
+                String operation = (String) cbOperations.getSelectedItem();
+
+                double result = 0;
+                {
+                    switch (operation) {
+                        case "+":
+                            result = num1 + num2;
+                            break;
+                        case "-":
+                            result = num1 - num2;
+                            break;
+                        case "*":
+                            result = num1 * num2;
+                            break;
+                        case "/":
+
+                            result = num1 / num2;
+                            break;
+                    }
+                }
+                lblResult.setText(Double.toString(result));
+
+        });
+    }
 
     public static void main(String[] args){
         SimpleCalcGUI app = new SimpleCalcGUI();
