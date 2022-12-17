@@ -12,6 +12,7 @@ public class LeapYearGUI extends JFrame{
 
     public LeapYearGUI(){
         btnCheckYear.addActionListener(e -> {
+            try{
                 int year = Integer.parseInt(tfYear.getText());
 
                 if(year < 0)
@@ -25,6 +26,9 @@ public class LeapYearGUI extends JFrame{
                         JOptionPane.showMessageDialog(mainpnl, "Not a Leap Year");
                 } else
                     JOptionPane.showMessageDialog(mainpnl, "Not a Leap Year");
+            } catch (NumberFormatException rebecca) {
+                JOptionPane.showMessageDialog(mainpnl, "Invalid Input: Enter a valid year or number");
+            }
         });
     }
 
