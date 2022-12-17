@@ -9,8 +9,10 @@ public class SimpleCalcGUI extends JFrame {
     private JButton btnCompute;
     private JTextField tfNumber2;
     private JTextField lblResult;
+
     public SimpleCalcGUI() {
         btnCompute.addActionListener((event) -> {
+            try {
                 double num1 = Double.parseDouble(tfNumber1.getText());
                 double num2 = Double.parseDouble(tfNumber2.getText());
                 String operation = (String) cbOperations.getSelectedItem();
@@ -28,16 +30,21 @@ public class SimpleCalcGUI extends JFrame {
                             result = num1 * num2;
                             break;
                         case "/":
-
+                            if (num2 == 0) {
+                                throw new ArithmeticException("Invalid: Divisor cannot be 0");
+                            }
                             result = num1 / num2;
                             break;
                     }
                 }
                 lblResult.setText(Double.toString(result));
-
+            } catch (NumberFormatException david) {
+                JOptionPane.showMessageDialog(mainpnl, "Invalid Input");
+            } catch (ArithmeticException lucy) {
+                JOptionPane.showMessageDialog(mainpnl, lucy.getMessage());
+            }
         });
     }
-
     public static void main(String[] args){
         SimpleCalcGUI app = new SimpleCalcGUI();
         app.setContentPane(app.mainpnl);
@@ -49,7 +56,6 @@ public class SimpleCalcGUI extends JFrame {
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
+
     }
-
 }
-
